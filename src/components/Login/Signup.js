@@ -87,8 +87,8 @@ function Signup({ user, setUser }) {
   return (
     <div  >
       <ToastContainer toastStyle={{ backgroundColor: "#121212", color: "wheat" }} />
-      <div className='logo' >
-          <img src={logo} alt="logo" />
+      <div className='logo2' >
+          <img src={logo} alt="logo2" />
         </div>
       <div className='container' >
        

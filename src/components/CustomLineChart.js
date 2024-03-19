@@ -12,7 +12,7 @@ class CustomLineChart extends PureComponent {
   componentDidMount() {
     this.fetchData();
     // Refresh data
-    this.interval = setInterval(this.fetchData, 3000);
+    this.interval = setInterval(this.fetchData, 100);
   }
 
   componentWillUnmount() {
@@ -20,12 +20,12 @@ class CustomLineChart extends PureComponent {
   }
 
   fetchData = () => {
-    fetch('https://api.thingspeak.com/channels/2474084/feeds.json?results=20')
+    fetch('https://api.thingspeak.com/channels/2474084/feeds.json?results=100n')
       .then(response => response.json())
       .then(data => {
         // Extract temperature data from the response
         const temperatures = data.feeds.map(feed => ({
-          name: feed.entry_id,
+          time: new Date(feed.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Modified time formatting
           temperature: parseFloat(feed.field1),
         }));
         console.log('Fetched data:', temperatures); // Log fetched data to console
@@ -43,16 +43,19 @@ class CustomLineChart extends PureComponent {
           data={this.state.data}
           margin={chartMargin}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis
-            label={{ value: 'Temperature', angle: -90, position: 'insideLeft', offset: -10 }}
-            domain={[0, 50]} // Set the domain to [0, 1500]
-            ticks={[...Array(1).keys()].map(val => val * 25)} // Generate ticks from 0 to 1500 with interval of 25
-            />
+          <CartesianGrid strokeDasharray="1 1" strokeOpacity={0.5} />
+          <XAxis dataKey="time" label={{ value: 'Time', position: 'insideBottom', offset: -10 }} />
+          <YAxis label={{ value: 'Temperature', angle: -90, position: 'insideLeft', offset: -10 }} />
           <Tooltip />
           <Legend />
-          <Area type="monotone" dataKey="temperature" stroke="#8884d8" fill="#8884d8" />
+          <Area type="monotone" dataKey="temperature" stroke="#8884d8" fill="url(#colorGradient)" />
+          {/* Define gradient */}
+          <defs>
+            <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="black" stopOpacity={0.8}/>
+              <stop offset="95%" stopColor="black" stopOpacity={0}/>
+            </linearGradient>
+          </defs>
         </AreaChart>
       </ResponsiveContainer>
     );

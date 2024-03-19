@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
-const Tempgauge = () => {
+const Tempgauge = ({temperatureQuality}) => {
   const canvasRef = useRef(null);
   const [value, setValue] = useState(0); // Initial value
 
@@ -36,11 +36,24 @@ const Tempgauge = () => {
 
     // Clear canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
-
+    let color;
+    switch (temperatureQuality) {
+      case "Good":
+        color = "#94B686"; // Green color for good quality
+        break;
+      case "Average":
+        color = "#E1B930"; // Yellow color for average quality
+        break;
+      case "Bad":
+        color = "#C52B23"; // Red color for bad quality
+        break;
+      default:
+        color = "#000000"; // Default color (black) in case of unexpected quality value
+    }
     // Draw background circle
     context.beginPath();
     context.arc(centerX, centerY, radius * 0.9, 0, 2 * Math.PI);
-    context.strokeStyle = "#94B686";
+    context.strokeStyle = color;
     context.lineWidth = radius * 0.1;
     context.setLineDash([8, 8]); // Set the dash pattern
     context.stroke();
@@ -52,7 +65,7 @@ const Tempgauge = () => {
       centerY,
       radius * 0.9,
       Math.PI,
-      Math.PI + (value / 100) * Math.PI,
+      Math.PI + (value / 80) * Math.PI,
       false
     );
     context.strokeStyle = "#000000";
@@ -63,7 +76,7 @@ const Tempgauge = () => {
     context.fillStyle = "#000000";
     context.font = "20px Space Grotesk";
     context.textAlign = "center";
-    context.fillText(`${value.toFixed(2)}°C`, centerX, centerY + radius * 0.2);
+    context.fillText(`${value}°C`, centerX, centerY + radius * 0.2);
   }, [value]);
 
   return (

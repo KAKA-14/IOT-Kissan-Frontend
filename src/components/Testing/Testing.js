@@ -1,14 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Testing.css";
-
+import logo from "../../assets/IOT Kisaan Logo.svg";
+import { MdDashboard } from "react-icons/md";
 function Testing() {
     const [fieldsState, setFieldsState] = useState({
-        t1: false,
-        t2: false,
-        t3: false,
-        t4: false,
+        t1: true,
+        t2: true,
+        t3: true,
+        t4: true,
     });
 
+    const [data2, setData2] = useState(null);
+    const handleClick = () => {
+        window.location.href = '/dashboard';
+      }
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(
+              'https://api.thingspeak.com/channels/2474084/feeds.json?results=2'
+            );
+    
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+    
+            const responseData = await response.json();
+            setData2(responseData);
+            console.log(responseData);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        
+        };
+    
+        fetchData();
+        
+      }, []);
     const apiKey = 'JEGYEPSC4ZM6190W';
     const baseURL = 'https://api.thingspeak.com/update';
 
@@ -55,7 +83,13 @@ function Testing() {
 
     return (
         <div >
-            <span className="tt">Test</span>
+            <button className="dash"
+          onClick={handleClick}
+          >
+          <MdDashboard/> Dashboard
+        </button>
+                <img className="kk" src={logo} alt="IOT Kissan Logo"  />
+            <span className="tt">Manual Control</span>
             <div className="test">
                 <div className={`t ${fieldsState.t1 ? 'active' : ''}`} id="t1" onClick={() => toggleField('t1')}>
                     <span>Air Pump</span>

@@ -12,7 +12,7 @@ class CustomLineChart extends PureComponent {
   componentDidMount() {
     this.fetchData();
     // Refresh data
-    this.interval = setInterval(this.fetchData, 3000);
+    this.interval = setInterval(this.fetchData, 100);
   }
 
   componentWillUnmount() {
@@ -43,8 +43,8 @@ class CustomLineChart extends PureComponent {
           data={this.state.data}
           margin={chartMargin}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          {/* <XAxis dataKey="time" label={{ value: 'Time', position: 'insideBottom', offset: -10 }} /> */}
+          <CartesianGrid strokeDasharray="1 1" strokeOpacity={0.5} />
+          <XAxis dataKey="time" label={{ value: 'Time', position: 'insideBottom', offset: -10 }} />
           <YAxis
             label={{ value: 'TDS', angle: -90, position: 'insideLeft', offset: -10 }}
             domain={[0, 1500]} // Set the domain to [0, 1500]

@@ -3,26 +3,25 @@ import './App.css';
 import Signup from './components/Login/Signup.js';
 import Login from './components/Login/Login.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Hello from './components/Login/Hello.js';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Dashboard from './components/Dashboard/Dashboard.js';
-import CustomLineChart from './components/CustomLineChart.js';
 import Testing from './components/Testing/Testing.js';
 function App() {
   const info = localStorage.getItem('user');
   const[user, setUser] = useState(JSON.parse(info));
+  
   return (
     <div>
-      {/* <Testing/> */}
-      <Dashboard/>
-      
-      {/* <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Hello />} />
+        <Route path="/" element={<Signup />} />
+
           <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/manualcontrol" element={<Testing />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }

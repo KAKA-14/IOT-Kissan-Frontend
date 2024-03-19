@@ -1,15 +1,15 @@
 .test{
     display:grid;
     margin-left: 20em;
-    margin-top:1em;
+    margin-top:0.5em;
     grid-template-columns: 28.3125em 62.7em; 
     grid-template-rows: 22.2em 22.2em;
 }
 .tt{
     position: relative;
     font-size: 2em;
-    top:11em;
-    left:21.9em;
+    top:12em;
+    left:12.7em;
     color: white;
 
 
@@ -23,7 +23,9 @@
     height: 20em;
     width: 20em;
     border-radius: 50%;
-    margin: 2em;
+    margin: 0.6em;
+    position: relative;
+    left: 1.2em;
     transition: all 0.25s ease-in-out;
     box-shadow: 0 0 15em 0.5em rgba(59, 110, 71, 0.2);
 
@@ -56,3 +58,27 @@
     background-color: #ECD379;
 
 }
+
+
+
+.kk{
+    position: relative;
+    width:5%;
+    left: 35.5em;
+}
+
+.dash{
+    font-size: 1.2em;
+    z-index: 22;
+    cursor: pointer;
+    background: transparent;
+    position: relative;
+    border: none;
+    color: #C0D4B8;
+    border: 2px solid #C0D4B8;
+    padding: 7px;
+    border-radius: 2em;
+    left: 70em;
+    bottom: 1em;
+  
+   }
