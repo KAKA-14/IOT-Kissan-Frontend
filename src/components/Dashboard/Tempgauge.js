@@ -13,7 +13,7 @@ const Tempgauge = ({temperatureQuality}) => {
         );
         const data = response.data;
         // Assuming the data structure has a field named "field1" containing the Celsius value
-        const celsiusValue = Math.ceil(data.feeds[0].field1); // Parse Celsius value
+        const celsiusValue = Math.ceil(data.feeds[1].field1); // Parse Celsius value
         // Adjust the value to be between 1 and 100
         const adjustedValue = Math.min(Math.max(celsiusValue, 1), 100);
         setValue(adjustedValue); // Set adjusted value as the state

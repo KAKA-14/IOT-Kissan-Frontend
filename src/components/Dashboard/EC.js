@@ -13,9 +13,12 @@ const EcGauge = ({ecQuality}) => {
         );
         const data = response.data;
         // Assuming the data structure has a field named "field2" containing the temperature value
-        const temperatureValue = data.main?(data.feeds[0].field2):0; // Parse temperature value from field2
+        console.log(data);
+        const EcValue = data?(data.feeds[1].field2):0; // Parse temperature value from field2
+        const adjustedValue = Math.min(Math.max(EcValue, 1), 10);
+
         // Adjust the value to be between 1 and 100
-        setValue(temperatureValue); // Set adjusted value as the state
+        setValue(adjustedValue); // Set adjusted value as the state
 
 
       } catch (error) {
@@ -67,7 +70,7 @@ const EcGauge = ({ecQuality}) => {
       centerY,
       radius * 0.9,
       Math.PI,
-      Math.PI + (value*3) * Math.PI,
+      Math.PI+(value) * Math.PI/10,
       false
     );
     context.strokeStyle = "black";

@@ -25,11 +25,11 @@ function Dashboard() {
   const [refresh, setRefresh] = useState();
   const Navigate = useNavigate();
   
-  useEffect(() => {
-    let user = localStorage.getItem("user");
-    if (!user) Navigate('/error');
+  // useEffect(() => {
+  //   let user = localStorage.getItem("user");
+  //   if (!user) Navigate('/error');
     
-  }, [refresh]);
+  // }, [refresh]);
   useEffect(() => {
     const fetchData = async () => {
       
