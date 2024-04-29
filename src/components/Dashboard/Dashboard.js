@@ -6,11 +6,12 @@ import CustomLineChart from "../CustomLineChart.js";
 import Tdsgraph from '../Tdsgraph.js';
 import Ec from '../Ec.js';
 import EC from './EC.js';
-import logo from '../../assets/IOT Kisaan Logo - coloured.svg';
+import logo from '../../assets/iot kisaan new logo.svg';
 import Tempgauge from "./Tempgauge.js";
 import TDSgauge from "./TDSgauge.js";
 import Card from "./Card.js";
 import { FaWrench } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [data, setData] = useState({});
@@ -21,8 +22,17 @@ function Dashboard() {
   const [maxValue2, setMaxValue2] = useState(parseInt(localStorage.getItem('optimal_tds_max')) || 100);
   const [minValue3, setMinValue3] = useState(parseInt(localStorage.getItem('optimal_ec_min')) || 0);
   const [maxValue3, setMaxValue3] = useState(parseInt(localStorage.getItem('optimal_ec_max')) || 100);
+  const [refresh, setRefresh] = useState();
+  const Navigate = useNavigate();
+  
+  useEffect(() => {
+    let user = localStorage.getItem("user");
+    if (!user) Navigate('/error');
+    
+  }, [refresh]);
   useEffect(() => {
     const fetchData = async () => {
+      
       try {
         const response = await fetch(
           'https://api.thingspeak.com/channels/2474084/feeds.json?results=2'
@@ -72,8 +82,17 @@ function Dashboard() {
       return 'Average';
     }
   };
+  const determineQualitytemp = (value, min, max) => {
+    if (value >= min && value <= max) {
+      return 'Good';
+    } else if (value > min) {
+      return 'Bad';
+    } else {
+      return 'Average';
+    }
+  };
 
-  const temperatureQuality = data2 ? determineQuality(data2.feeds[1].field1, minValue1, maxValue1) : '';
+  const temperatureQuality = data2 ? determineQualitytemp(data2.feeds[1].field1, minValue1, maxValue1) : '';
   const tdsQuality = data2 ? determineQuality(data2.feeds[1].field3, minValue2, maxValue2) : '';
   const ecQuality = data2 ? determineQuality(data2.feeds[1].field2, minValue3, maxValue3) : '';
   const getQualityColor = (quality) => {

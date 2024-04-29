@@ -84,7 +84,6 @@ const EcGauge = ({ecQuality}) => {
   return (
     <div className="c3">
       <canvas ref={canvasRef} width={180} height={180}></canvas>
-        <span>{ecQuality}</span>
 
     </div>
   );

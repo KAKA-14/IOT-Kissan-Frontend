@@ -3,7 +3,7 @@ import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
 import './Signup.css';
-import logo from '../../assets/IOT Kisaan Logo.svg';
+import logo from '../../assets/IOT Kisaan Logo - coloured.svg';
 import { useNavigate } from 'react-router-dom';
 import { signup } from '../../services/api.js';
 import "react-toastify/dist/ReactToastify.css";

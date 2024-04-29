@@ -4,7 +4,7 @@ import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/IOT Kisaan Logo.svg';
+import logo from '../../assets/IOT Kisaan Logo - coloured.svg';
 import { login } from '../../services/api.js';
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from 'react-toastify';
@@ -80,7 +80,7 @@ function Login({ user, setUser }) {
   return (
     <div>
       <ToastContainer toastStyle={{ backgroundColor: "#121212", color: "wheat" }} />
-      <div className='logo2' >
+      <div className='lo' >
           <img src={logo} alt="logo2" />
         </div>
       <div className={'container'} >

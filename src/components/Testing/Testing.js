@@ -51,10 +51,12 @@ function Testing() {
         try {
             let response;
             let data;
-           do{
                 response = await fetch(url, { method: 'POST' });
                 data=await response.json();
-            }while(data==0)
+                do{
+                    response = await fetch(url, { method: 'POST' });
+                    data=await response.json();
+                }while(data==0)
             if (!response.ok) {
                 throw new Error('Failed to toggle field');
             }
@@ -80,7 +82,39 @@ function Testing() {
                 return -1; // Invalid field ID
         }
     };
+    const [toggle, setToggle] = useState(false);
+    const handleToggleChange = () => {
+        setToggle(prevToggle => !prevToggle); // Using functional form of setToggle
+        
+        if (toggle) {
+            toggleField('t1'); // 20s on
+            setTimeout(() => {
+                console.log('t1 on');
+            }, 20000);
+            toggleField('t1'); // off after 20 seconds
 
+            setTimeout(() => {
+                console.log('t2 on');
+            },2000);
+            toggleField('t2'); // 10s on after 20 seconds
+
+            setTimeout(() => {
+            }, 10000);
+            toggleField('t2'); // 10s on after 20 seconds
+
+            setTimeout(() => {
+                console.log("idle");// off after 30 seconds
+            }, 40000);
+            // 40s idle
+        } else {
+            setFieldsState({
+                t1: true,
+                t2: true,
+                t3: true,
+                t4: true,
+            });
+        }
+    };
     return (
         <div >
             <button className="dash"
@@ -88,6 +122,7 @@ function Testing() {
           >
           <MdDashboard/> Dashboard
         </button>
+
                 <img className="kk" src={logo} alt="IOT Kissan Logo"  />
             <span className="tt">Manual Control</span>
             <div className="test">

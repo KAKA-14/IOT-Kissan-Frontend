@@ -9,14 +9,7 @@ body{
 	overflow: hidden;
 
 }
-.logo2{
-	width:70%;
-	position: relative;
-	right: 35%;
 
-	transform: scaleX(-1);
-
-}
 p {
 	font-size: 14px;
 	font-weight: 100;
