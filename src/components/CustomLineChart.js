@@ -28,7 +28,7 @@ class CustomLineChart extends PureComponent {
           time: new Date(feed.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), // Modified time formatting
           temperature: parseFloat(feed.field1),
         }));
-        console.log('Fetched data:', temperatures); // Log fetched data to console
+        // console.log('Fetched data:', temperatures); // Log fetched data to console
         this.setState({ data: temperatures }); // Reverse to show latest first
       })
       .catch(error => console.error('Error fetching data:', error));

@@ -44,7 +44,7 @@ function Dashboard() {
 
         const responseData = await response.json();
         setData2(responseData);
-        console.log(responseData);
+        // console.log(responseData);
 
       } catch (error) {
         console.error('Error fetching data:', error);

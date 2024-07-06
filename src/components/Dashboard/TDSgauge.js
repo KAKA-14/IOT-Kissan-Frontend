@@ -13,7 +13,7 @@ const TDSgauge = ({tdsQuality}) => {
         );
         const data = response.data;
         // Assuming the data structure has a field named "field3" containing the TDS value
-        const tdsValue = Math.ceil(data.feeds[1].field3); // Parse TDS value
+        const tdsValue = Math.ceil(data.feeds[0].field3); // Parse TDS value
         // Adjust the value to be between 1 and 100
         // const adjustedValue = Math.min(Math.max(tdsValue, 1), 100);
         setValue(tdsValue); // Set adjusted value as the state

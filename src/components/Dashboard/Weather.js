@@ -14,7 +14,7 @@ function Weather({ data, setData}) {
           const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`;
           const response = await axios.get(url);
           setData(response.data);
-          console.log(response.data);
+          // console.log(response.data);
         });
       } catch (error) {
         setError('Error fetching weather data.');

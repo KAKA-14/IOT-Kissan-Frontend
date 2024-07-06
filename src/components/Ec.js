@@ -28,7 +28,7 @@ class Ec extends PureComponent {
           time: new Date(feed.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           ec: parseFloat(feed.field2), // Extract EC data from field2
         }));
-        console.log('Fetched data:', ecData); // Log fetched data to console
+        // console.log('Fetched data:', ecData); // Log fetched data to console
         this.setState({ data: ecData });
       })
       .catch(error => console.error('Error fetching data:', error));

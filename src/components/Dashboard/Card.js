@@ -31,7 +31,7 @@ const Card = ({ minValue, setMinValue, maxValue, setMaxValue, storageKey }) => {
   const toggleSlicer = () => {
     setIsOpen(!isOpen);
   };
-  console.log(`${storageKey}_min`);
+  // console.log(`${storageKey}_min`);
   const slicerValueText = `${localStorage.getItem(`${storageKey}_min`)} - ${localStorage.getItem(`${storageKey}_max`)}`;
 
   const slicerValueRef = React.createRef();
